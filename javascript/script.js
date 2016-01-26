@@ -1,6 +1,7 @@
 // Navigation 1.0 ALPHA
 //
-// * Selectes the appropriate element in the side-nav when scrolling through the page
+// * Highlights the appropriate element in the navigation when scrolling through the page
+// * Scrolls to appropriate section of the page when the navigation is clicked
 
 var sections = [];
 var articleSections = $();
@@ -16,20 +17,19 @@ $(document).ready(function(){
     autoscrolling = true;
 
     $('html, body').animate({
-        scrollTop: $(section).offset().top
+        scrollTop: $(section).offset().top - 15
     }, 500, function(){
       autoscrolling = false;
+      window.location.hash = section;
     });
 
     return false;
-
   });
 
   $("nav a").each(function(i,el){
     var sectionName = $(el).attr("href");
     if(sectionName.length > 0) {
-      sectionName = sectionName.replace("#","");
-      sectionName = sectionName.toLowerCase();
+      sectionName = sectionName.replace("#","").toLowerCase();
       sections.push(sectionName);
     }
   });
@@ -37,8 +37,7 @@ $(document).ready(function(){
   var jam = $("article *[id]");
   $(jam).each(function(i,el){
     var id = $(el).attr("id");
-    id = id.replace("#","");
-    id = id.toLowerCase();
+    id = id.replace("#","").toLowerCase();
     if(sections.indexOf(id) > -1) {
       articleSections.push(el);
     }
@@ -48,11 +47,9 @@ $(document).ready(function(){
     if(autoscrolling == false) {
       scroll();
     }
-
   });
 
 });
-
 
 function scroll(){
   articleSections.each(function(i,el){
@@ -61,10 +58,8 @@ function scroll(){
     var fromTop = offset.top - windowTop;
     if(fromTop > 0 && fromTop < 400) {
       var id = $(el).attr('id');
-      id = id.toLowerCase();
-      id = id.replace("#","");
-
-      $("nav a.selected").removeClass("selected");
+      id = id.toLowerCase().replace("#","");
+      $("nav .selected").removeClass("selected");
       $("nav a[href=#"+id+"]").addClass("selected");
     }
   });
