@@ -82,10 +82,11 @@ h4 {
 
 ul, ol {
   padding-left: 25px;
+  margin: 0 0 30px 0;
 
   li {
     line-height: 135%;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
   }
 }
 
@@ -189,13 +190,6 @@ ul, p {
   margin: 0 0 30px 0;
 }
 
-ol {
-  padding: 0 0 20px 20px;
-
-  li {
-    margin: 0 0 12px 0;
-  }
-}
 
 a {
   color: #3897c1;
@@ -379,6 +373,7 @@ nav {
 
     li {
       list-style-type: disc;
+      margin: 0 0 8px 0;
 
       h2 {
         font-size: 15px;
@@ -408,6 +403,8 @@ nav {
   }
 
   dd {
+    -webkit-column-break-inside: avoid;
+    break-inside: avoid;
     margin-bottom: 20px;
     margin-left: 20px;
   }
