@@ -4,12 +4,25 @@
 
 var sections = [];
 var articleSections = $();
+var autoscrolling = false;
 
 $(document).ready(function(){
 
   $("nav").on("click","a",function(){
     $(".selected").removeClass("selected");
     $(this).addClass("selected");
+    var section = $(this).attr("href");
+
+    autoscrolling = true;
+
+    $('html, body').animate({
+        scrollTop: $(section).offset().top
+    }, 500, function(){
+      autoscrolling = false;
+    });
+
+    return false;
+
   });
 
   $("nav a").each(function(i,el){
@@ -32,7 +45,10 @@ $(document).ready(function(){
   });
 
   $(window).on("scroll",function(){
-    scroll();
+    if(autoscrolling == false) {
+      scroll();
+    }
+
   });
 
 });
