@@ -1,0 +1,442 @@
+// Main colors
+@primary: #2EB3DB;  // Section headings and side-bar background
+@primary-dark: #0B8CAA;       // Navigation selected state
+@primary-dark-hover: #199CBE;       // Navigation selected state
+
+@primary-light: #C7E9F8;      // Borders & horizontal rules
+@primary-text: #0092BF;
+
+
+// Secondary colors
+@secondary-text: #2E4F63;             // Text color for Example section
+@secondary-background: #C8E3F7;       // Main background for Example section
+@secondary-background-light: #DEEEFA; // Lighter background for Example section
+
+// Body copy colors
+@text-dark: rgba(0,0,0,1);    // Text for dark headings and bold items
+@text-medium: rgba(0,0,0,.5); // Body copy (paragraphs, lists, etc.)
+@text-light: rgba(0,0,0,.35); // Just used for the the time indicators
+
+@aside-width: 230px;          // Width of the navigation side bar
+
+body {
+  font-family: "Fira Sans","Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  padding: 0;
+  margin: 0;
+
+  * {
+    line-height: initial;
+    padding: 0;
+    margin: 0;
+    font-size: inherit;
+    color: @text-medium;
+    font-weight: 400;
+  }
+}
+
+
+// Basic content & tags
+
+h1 {
+  font-size: 32px;
+  margin: 0 0 35px 0;
+  width: ~"calc(100% - 250px)";
+  color: @text-dark;
+  position: relative;
+  line-height: 120%;
+}
+
+h2 {
+  font-size: 32px;
+  font-style: italic;
+  color: @primary-text;
+  margin: 20px 0;
+}
+
+h3 {
+  color: @primary-text;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 20px 0 8px 0;
+}
+
+h4 {
+  color: @text-dark;
+  margin: 0px 0 10px 0;
+  font-size: 18px;
+}
+
+
+ul, ol {
+  padding-left: 25px;
+  margin: 0 0 30px 0;
+
+  li {
+    line-height: 135%;
+    margin-bottom: 8px;
+  }
+}
+
+strong {
+  font-weight: 500;
+  color: @text-dark;
+}
+
+p {
+  margin: 0 0 30px 0;
+}
+
+
+a {
+  color: #3897c1;
+  transition: background .1s ease-out;
+
+  &:hover {
+    color: #2f87a5;
+    background: rgba(56, 151,193,.1);
+  }
+}
+
+// The main conent wrapper
+
+article {
+  max-width: 800px;
+  min-width: 500px;
+  position: relative;
+  padding: 40px 55px 40px @aside-width + 55;
+  z-index: 1;
+}
+
+.logo {
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  width: 180px;
+
+  a:hover {
+    background: none;
+    opacity: .8;
+  }
+}
+
+// Example callout box
+
+.example {
+  display: flex;
+  margin: 35px 0 40px 0;
+
+  .title {
+    flex: 1;
+    background: @secondary-background-light;
+
+    h1 {
+      color: @secondary-text;
+      width: 100%;
+      padding: 0 0 2px 0;
+      font-size: 20px;
+      font-style: italic;
+      border-bottom: solid 2px @secondary-background;
+    }
+  }
+
+  .content {
+    flex: 2;
+    background: @secondary-background;
+    color: @secondary-text;
+
+    p:last-child {
+      margin: 0;
+    }
+
+    * {
+      color: inherit;
+    }
+  }
+
+  .title, .content {
+    padding: 30px 35px;
+  }
+}
+
+// Summary, audience and duration
+.meta-information {
+  display: flex;
+  margin: 0 -15px 50px -15px;
+
+  .summary, .details {
+    margin: 0 15px;
+  }
+
+  .summary {
+    flex: 2;
+    font-size: 18px;
+    line-height: 145%;
+    padding: 0 0 0 25px;
+    font-style: italic;
+    border-left: solid 3px @primary-light;
+  }
+
+  .details {
+    flex: 1;
+
+    time, .difficulty {
+      color: @primary-text;
+      font-weight: 700;
+      margin-bottom: 3px;
+      display: block;
+    }
+
+    time:before {
+      content:   "\f017";
+      font-family: FontAwesome;
+      margin-right: 6px;
+    }
+
+    .difficulty:before {
+      content:   "\f007";
+      font-family: FontAwesome;
+      margin-right: 6px;
+    }
+  }
+}
+
+// Format, target audience & materials
+.presentation-details {
+  display: flex;
+  margin-left: -15px;
+  margin-right: -15px;
+
+  section {
+    flex: 1;
+    margin: 0 15px;
+  }
+}
+
+// Side-bar with navigation
+aside {
+  background: @primary;
+  position:fixed;
+  height: 100vh;
+  width: @aside-width;
+  top: 0;
+  z-index: 2;
+
+  .image {
+    position: relative;
+
+    img {
+      width: ~"calc(100% - 20px)";
+    }
+  }
+}
+
+/* Left-side Navigation */
+
+nav {
+  padding: 0;
+  margin: 15px 0 80px 0;
+  list-style-type: none;
+  position: relative;
+
+  a {
+    display: block;
+    position: relative;
+    text-decoration: none;
+    color: rgba(255,255,255,.7);
+    padding: 18px 34px;
+    transition: background .05s ease-out;
+
+    &.selected, &.selected:hover {
+      background: @primary-dark;
+      color: white;
+      font-weight: 500;
+    }
+
+    &:hover {
+      background: @primary-dark-hover;
+      color: rgba(255,255,255,1);
+    }
+
+    &:after {
+      content: "";
+      background: ~"url(images/nav-selected-indicator-blue.svg)";
+      background-position: top left;
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: 100%;
+      width: 20px;
+      position: absolute;
+      top: 0;
+      right: 0;
+      opacity: 0;
+      transition: all .075s ease-out;
+    }
+
+    &.selected {
+      color: rgba(255,255,255,1);
+
+      &:after {
+        opacity: 1;
+        right: -20px;
+      }
+
+    }
+  }
+}
+
+/*The steps to complete list*/
+
+.steps {
+  margin: 30px 0 50px 0;
+  padding: 0 0 0 60px;
+
+  h1 {
+    font-weight: 500;
+    font-size: 22px;
+    margin: 0 0 6px 0;
+    padding: 0;
+    color: @primary-text;
+  }
+
+  time {
+    margin: 0 0 10px 0;
+    display: block;
+    color: @text-light;
+    font-weight: 500;
+
+    &:before {
+      content:   "\f017";
+      font-family: FontAwesome;
+      margin-right: 6px;
+      color: rgba(0,0,0,.25);
+    }
+  }
+
+  > ol {
+    padding: 0;
+  }
+
+  > li {
+    list-style-type: none;
+    position: relative;
+    padding: 0 0 10px 0;
+    margin: 0 0 40px 0;
+
+    &:not(:last-child):after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      height: 2px;
+      background: @primary-light;
+      width: 35%;
+      left: ~"calc(22% + 50px)";
+    }
+
+    &:last-child {
+      border: none;
+      margin: 0;
+
+      :last-child {
+        margin: 0;
+      }
+    }
+
+    &:before {
+      position: absolute;
+      left: -60px;
+      top: -10px;
+      font-weight: 400;
+      font-size: 22px;
+      color: @primary-text;
+      border: solid 2px @primary-light;
+      height: 43px;
+      width: 43px;
+      text-align: center;
+      box-sizing: border-box;
+      padding-top: 10px;
+      border-radius: 0 50% 50% 50%;
+    }
+
+    // Creates fancy number elements for the Steps-to-Complete list
+    .make-steps(@counter) when (@counter > 0) {
+      .make-steps((@counter - 1));
+      &:nth-child(@{counter}):before {
+        content: ~"'"@counter~"'";
+      }
+    }
+    .make-steps(10);
+  }
+
+  // Lists within the steps to complete list
+  ul, ol {
+    padding: 0;
+
+    li {
+      list-style-type: disc;
+
+      h2 {
+        font-size: 15px;
+        color: @text-dark;
+        font-style: normal;
+        font-weight: 500;
+        margin: 0;
+      }
+    }
+  }
+
+}
+
+.glossary {
+  -webkit-column-count: 2;
+     -moz-column-count: 2;
+          column-count: 2;
+  -webkit-column-gap: 30px;
+     -moz-column-gap: 30px;
+          column-gap: 30px;
+
+  margin: 0 0 40px 0;
+
+  dt {
+    font-weight: 500;
+    color: @text-dark;
+  }
+
+  dd {
+    -webkit-column-break-inside: avoid;
+    break-inside: avoid;
+    margin-bottom: 20px;
+    margin-left: 20px;
+  }
+}
+
+.resources {
+  -webkit-column-count: 2;
+     -moz-column-count: 2;
+          column-count: 2;
+  -webkit-column-gap: 30px;
+     -moz-column-gap: 30px;
+          column-gap: 30px;
+  padding-bottom: 30px;
+
+  .resource  {
+    -webkit-column-break-inside: avoid;
+    break-inside: avoid;
+    padding-bottom: 25px;
+
+    h4 {
+      margin: 0;
+      padding: 0;
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 17px;
+    }
+
+    p {
+      margin: 10px 0 0 0;
+    }
+  }
+}
+
+// TODO: Print styles
+@media print {}
