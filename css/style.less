@@ -58,7 +58,7 @@ h3 {
 
 h4 {
   color: @text-dark;
-  margin: 0px 0 10px 0;
+  margin: 0 0 10px 0;
   font-size: 18px;
 }
 
@@ -206,7 +206,7 @@ article {
       content: "";
       width: 3px;
       height: ~"calc(100% - 10px)";
-      left: 0px;
+      left: 0;
       top: 5px;
       position: absolute;
       background: @primary-light;
@@ -242,10 +242,16 @@ article {
   display: flex;
   margin-left: -20px;
   margin-right: -20px;
+  margin: 0 0 35px 0;
 
   section {
     flex: 1;
     margin: 0 20px;
+
+    :last-child {
+      margin-bottom: 0;
+    }
+
   }
 }
 
@@ -446,7 +452,7 @@ nav {
       font-weight: 500;
       font-size: @base-font-size;
       color: @text-dark;
-      margin: 0px;
+      margin: 0;
     }
 
     p {
