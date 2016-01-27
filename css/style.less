@@ -1,36 +1,35 @@
 // Main colors
-@primary: rgba(219,96,88,1);  // Section headings and side-bar background
-@primary-dark: #C14B48;       // Navigation selected state
-@primary-light: #F5D0CD;      // Borders & horizontal rules
+@primary-darkest: #2581B7;    // Navigation selected state
+@primary-dark: #2F8DBC;       // Navigation hover state
+@primary: #4F99C4;            // Section headings and side-bar background
+@primary-light: #CAE8FA;      // Borders & horizontal rules
+@primary-lightest: #E0F3FF;   // Background for Example
 
-// Secondary colors
-@secondary-text: #3075A0;             // Text color for Example section
-@secondary-background: #C8E3F7;       // Main background for Example section
-@secondary-background-light: #DEEEFA; // Lighter background for Example section
+// Neutral Text
+@text-dark: #3C4E56;            // Dark headings and bold items
+@text-medium: rgba(0,0,0,.45);  // Body copy (paragraphs, lists, etc.)
 
-// Body copy colors
-@text-dark: rgba(0,0,0,1);    // Text for dark headings and bold items
-@text-medium: rgba(0,0,0,.5); // Body copy (paragraphs, lists, etc.)
-@text-light: rgba(0,0,0,.35); // Just used for the the time indicators
+// Links
+@link-color: #089970;         // Link text
+@link-background: #E4F7F0;    // Link background when hovered
 
+// Layout
 @aside-width: 230px;          // Width of the navigation side bar
+@base-font-size: 16px;        // Base font size for body copy
 
 body {
   font-family: "Fira Sans","Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
   padding: 0;
   margin: 0;
 
   * {
-    line-height: initial;
     padding: 0;
     margin: 0;
     font-size: inherit;
-    color: @text-medium;
     font-weight: 400;
   }
 }
-
 
 // Basic content & tags
 
@@ -46,12 +45,12 @@ h1 {
 h2 {
   font-size: 32px;
   font-style: italic;
-  color: @primary;
-  margin: 20px 0;
+  color: @primary-darkest;
+  margin: 30px 0 20px 0;
 }
 
 h3 {
-  color: @primary;
+  color: @primary-darkest;
   font-size: 20px;
   font-weight: 500;
   margin: 20px 0 8px 0;
@@ -63,14 +62,33 @@ h4 {
   font-size: 18px;
 }
 
+p, li {
+  color: @text-medium;
+  line-height: 160%;
+}
 
 ul, ol {
-  padding-left: 25px;
   margin: 0 0 30px 0;
 
   li {
-    line-height: 135%;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
+  }
+}
+
+ul {
+  li {
+    list-style-type: none;
+    position: relative;
+
+    &:before {
+      content: ".";
+      position: absolute;
+      left: -15px;
+      font-weight: 700;
+      color: inherit;
+      font-size: 25px;
+      top: -6px;
+    }
   }
 }
 
@@ -83,24 +101,24 @@ p {
   margin: 0 0 30px 0;
 }
 
-
 a {
-  color: #3897c1;
-  transition: background .1s ease-out;
+  color: @link-color;
+  transition: background .05s ease-out;
 
   &:hover {
-    color: #2f87a5;
-    background: rgba(56, 151,193,.1);
+    background: @link-background;
   }
 }
+
 
 // The main conent wrapper
 
 article {
-  max-width: 800px;
+  max-width: 750px;
   min-width: 500px;
   position: relative;
-  padding: 40px 55px 40px @aside-width + 55;
+  padding: 40px 0 40px @aside-width + 65;
+  margin-right: 55px;
   z-index: 1;
 }
 
@@ -121,25 +139,40 @@ article {
 .example {
   display: flex;
   margin: 35px 0 40px 0;
+  background: @primary-lightest;
+  color: @primary-darkest;
+  padding: 30px 35px;
 
   .title {
     flex: 1;
-    background: @secondary-background-light;
+    color: inherit;
 
     h1 {
-      color: @secondary-text;
       width: 100%;
       padding: 0 0 2px 0;
       font-size: 20px;
       font-style: italic;
-      border-bottom: solid 2px @secondary-background;
+      position: relative;
+      top: 3px;
+      color: inherit;
     }
   }
 
   .content {
     flex: 2;
-    background: @secondary-background;
-    color: @secondary-text;
+    color: inherit;
+    position: relative;
+    padding-left: 22px;
+
+    &:after {
+      content: "";
+      width: 2px;
+      left: -2px;
+      top: 4px;
+      height: ~"calc(100% - 8px)";
+      position: absolute;
+      background: @primary-light;
+    }
 
     p:last-child {
       margin: 0;
@@ -150,34 +183,41 @@ article {
     }
   }
 
-  .title, .content {
-    padding: 30px 35px;
-  }
 }
 
 // Summary, audience and duration
 .meta-information {
   display: flex;
-  margin: 0 -15px 50px -15px;
+  margin: 0 -20px 50px -20px;
 
   .summary, .details {
-    margin: 0 15px;
+    margin: 0 20px;
   }
 
   .summary {
     flex: 2;
     font-size: 18px;
     line-height: 145%;
-    padding: 0 0 0 25px;
+    padding: 0 0 0 28px;
     font-style: italic;
-    border-left: solid 3px @primary-light;
+    position: relative;
+
+    &:after {
+      content: "";
+      width: 3px;
+      height: ~"calc(100% - 10px)";
+      left: 0px;
+      top: 5px;
+      position: absolute;
+      background: @primary-light;
+    }
   }
 
   .details {
     flex: 1;
 
     time, .difficulty {
-      color: @primary;
+      color: @primary-darkest;
       font-weight: 700;
       margin-bottom: 3px;
       display: block;
@@ -200,12 +240,12 @@ article {
 // Format, target audience & materials
 .presentation-details {
   display: flex;
-  margin-left: -15px;
-  margin-right: -15px;
+  margin-left: -20px;
+  margin-right: -20px;
 
   section {
     flex: 1;
-    margin: 0 15px;
+    margin: 0 20px;
   }
 }
 
@@ -244,14 +284,13 @@ nav {
     transition: background .05s ease-out;
 
     &.selected, &.selected:hover {
-      background: @primary-dark;
+      background: @primary-darkest;
       color: white;
       font-weight: 500;
     }
 
     &:hover {
       background: @primary-dark;
-      background: #CE5652;
       color: rgba(255,255,255,1);
     }
 
@@ -293,13 +332,13 @@ nav {
     font-size: 22px;
     margin: 0 0 6px 0;
     padding: 0;
-    color: @primary;
+    color: @primary-darkest;
   }
 
   time {
     margin: 0 0 10px 0;
     display: block;
-    color: @text-light;
+    color: @text-medium;
     font-weight: 500;
 
     &:before {
@@ -345,13 +384,13 @@ nav {
       top: -10px;
       font-weight: 400;
       font-size: 22px;
-      color: #DB6058;
-      border: solid 2px #F5D0CD;
+      color: @primary-darkest;
+      border: solid 2px @primary-light;
       height: 43px;
       width: 43px;
       text-align: center;
       box-sizing: border-box;
-      padding-top: 10px;
+      padding-top: 9px;
       border-radius: 0 50% 50% 50%;
     }
 
@@ -370,7 +409,11 @@ nav {
     padding: 0;
 
     li {
-      list-style-type: disc;
+      list-style-type: none;
+
+      &:before {
+        display: none;
+      }
 
       h2 {
         font-size: 15px;
@@ -394,17 +437,24 @@ nav {
 
   margin: 0 0 40px 0;
 
-  dt {
-    font-weight: 500;
-    color: @text-dark;
+  .term {
+    -webkit-column-break-inside: avoid;
+            column-break-inside: avoid;
+    display: table; // Weird hack for Firefox
+
+    h3 {
+      font-weight: 500;
+      font-size: @base-font-size;
+      color: @text-dark;
+      margin: 0px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      margin-left: 15px;
+    }
   }
 
-  dd {
-    -webkit-column-break-inside: avoid;
-    break-inside: avoid;
-    margin-bottom: 20px;
-    margin-left: 20px;
-  }
 }
 
 .resources {
