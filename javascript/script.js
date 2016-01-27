@@ -17,7 +17,7 @@ $(document).ready(function(){
     autoscrolling = true;
 
     $('html, body').animate({
-        scrollTop: $(section).offset().top - 15
+        scrollTop: $(section).offset().top
     }, 500, function(){
       autoscrolling = false;
       window.location.hash = section;
