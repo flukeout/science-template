@@ -6,7 +6,7 @@
 @primary-lightest: #E0F3FF;   // Background for Example
 
 // Neutral Text
-@text-dark: #3C4E56;            // Dark headings and bold items
+@text-dark: #273D44;            // Dark headings and bold items
 @text-medium: rgba(0,0,0,.45);  // Body copy (paragraphs, lists, etc.)
 
 // Links
@@ -36,7 +36,6 @@ body {
 h1 {
   font-size: 32px;
   margin: 0 0 35px 0;
-  width: ~"calc(100% - 250px)";
   color: @text-dark;
   position: relative;
   line-height: 120%;
@@ -117,16 +116,16 @@ article {
   max-width: 750px;
   min-width: 500px;
   position: relative;
-  padding: 40px 0 40px @aside-width + 65;
+  padding: 20px 0 40px @aside-width + 65;
   margin-right: 55px;
   z-index: 1;
 }
 
 .logo {
-  position: absolute;
-  top: 20px;
-  right: 15px;
-  width: 180px;
+  position: relative;
+  left: -12px;
+  width: 175px;
+  margin-bottom: 10px;
 
   a:hover {
     background: none;
